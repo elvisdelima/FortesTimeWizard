@@ -1,0 +1,19 @@
+<ion-view title="Registros">
+  <ion-content>
+	<div class="item item-divider">
+  	Hoje
+	</div>		
+    <ion-list>
+      <ion-item ng-repeat="l in lancamentos" type="item-text-wrap">
+        <div class="row">
+          <div class="col">
+            {{l.sentido}}
+          </div>
+          <div class="col col-20">
+            {{l.hora}}  
+          </div>                
+        </div>        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
