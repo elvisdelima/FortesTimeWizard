@@ -1,18 +1,22 @@
 angular.module('app.controllers')
 .controller('RegistroCtrl', function($http,$scope,$location,$ionicModal,$ionicLoading,$ionicPopup, LancamentosFiltro,LancamentosHoje) {
 	
+    $scope.data={Filtro:""};
     $scope.data={Dia: new Date().toLocaleDateString()};
-        var pis = localStorage.getItem("pis")
     
-    $scope.$watch("data.Dia",function(nValue,oValue){
+    var pis = localStorage.getItem("pis")
+    $scope.$watch("data.Filtro",function(nValue,oValue){
+        if(nValue)
         if(nValue.indexOf('-')>=0){
-            var data  = nValue.split('-');
-            $scope.data.Dia = data[2]+'/'+data[1]+'/'+data[0];
-        }
-        else{
-            $scope.data.Dia = oValue;
-        }
+                var data  = nValue.split('-');
+                $scope.data.Dia = data[2]+'/'+data[1]+'/'+data[0];
+            }
+            else{
+                $scope.data.Dia = oValue;
+            }
+        
     });
+    
     
     $scope.showAlert=function(msg){
         var alertBox=$ionicPopup.alert({title:"<h1 class='assertive'><span class='icon ion-alert padding' style='font-size:30px;'></span>Atenção</h1>",template:msg, okType: "button-assertive"});
@@ -27,9 +31,10 @@ angular.module('app.controllers')
     }
     //    020727948177
 	    
-    $scope.Filtrar = function(dia){
+    $scope.Filtrar = function(){
         $scope.lancamentos = [];
         $scope.closeModal();
+        var dia = $scope.data.Filtro;
        
         if(dia && dia!== new Date().toLocaleDateString()){            
             $ionicLoading.show({        
