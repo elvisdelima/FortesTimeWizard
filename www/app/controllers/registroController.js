@@ -1,5 +1,6 @@
+//    020727948177
 angular.module('app.controllers')
-.controller('RegistroCtrl', function($http,$scope,$location,$ionicModal,$ionicLoading,$ionicPopup, LancamentosFiltro,LancamentosHoje) {
+.controller('RegistroCtrl', function($http,$scope,$location,$ionicModal,$ionicLoading,$ionicPopup, RegistroService) {
 	
     $scope.data={Filtro:""};
     $scope.data={Dia: new Date().toLocaleDateString()};
@@ -20,8 +21,7 @@ angular.module('app.controllers')
     
     $scope.showAlert=function(msg){
         var alertBox=$ionicPopup.alert({title:"<h1 class='assertive'><span class='icon ion-alert padding' style='font-size:30px;'></span>Atenção</h1>",template:msg, okType: "button-assertive"});
-        
-    }
+    };
      if(!pis){
         
         $scope.showAlert("Informe seu PIS no menu de Configurações");
@@ -29,8 +29,6 @@ angular.module('app.controllers')
         localStorage.setItem("redirected",true);
         return;
     }
-    //    020727948177
-	    
     $scope.Filtrar = function(){
         $scope.lancamentos = [];
         $scope.closeModal();
@@ -39,20 +37,16 @@ angular.module('app.controllers')
         if(dia && dia!== new Date().toLocaleDateString()){            
             $ionicLoading.show({        
                  template: '<h1><i class="icon ion-loading-a"></i></h1>'        
-                })       
-
-              var url="http://fortesponto.azurewebsites.net/api/Lancamentos/"+pis+"/"+dia;
-                  $http.get(url).then(function(result){
-                       var array = result.data;
-                      var result = array.map(function(item, rank){
-                        return {
-                          sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
-                          hora: item.DtRegistro.slice(11,16) 
-                        };                          
-                    })
-                  $scope.lancamentos = result;
-                  $ionicLoading.hide();
-                });
+            });
+            RegistroService.getRegistrosHoje(pis,dia).success(function(result){
+              var array = result.data;
+              var result = array.map(function(item, rank){
+                            return {sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
+                                      hora: item.DtRegistro.slice(11,16) };                          
+                            });
+              $scope.lancamentos = result;
+              $ionicLoading.hide();
+            }).error(function(erro){$scope.showAlert("Ocorreu um Erro!");});
         }
         else{
              $scope.showAlert("Informe uma data para filtrar.");        
@@ -62,21 +56,20 @@ angular.module('app.controllers')
     $scope.BatidasDeHoje = function(){
         $ionicLoading.show({        
          template: '<h1><i class="icon ion-loading-a"></i></h1> '        
-        })
-        
-        $scope.lancamentos = [];
-        var url="http://fortesponto.azurewebsites.net/api/Lancamentos/"+pis+"/hoje";
-                $http.get(url).then(function(result){
-                    var array = result.data;
+        })        
+        RegistroService.getRegistrosHoje(pis).success(function(result){
+                    var array = result;
                     var result = array.map(function(item, rank){
                         return {
                                 sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
                                 hora: item.DtRegistro.slice(11,16) 
                                 };                          
-                            })
+                            });                    
+                    $scope.lancamentos = [];
                     $scope.data={Dia: new Date().toLocaleDateString()};
                     $scope.lancamentos = result;
                     $ionicLoading.hide();
+            
                 });
     }
     
