@@ -7,6 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starter.services'])
 
+
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -38,12 +40,12 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
 
     // Each tab has its own nav history stack:
 
-    .state('tab.dash', {
-      url: '/dash',
+    .state('tab.inicio', {
+      url: '/inicio',
       views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+        'tab-inicio': {
+          templateUrl: 'templates/tab-inicio.html',
+          controller: 'InicioCtrl'
         }
       }
     })
@@ -67,18 +69,18 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.configuracoes', {
+      url: '/configuracoes',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-configuracoes': {
+          templateUrl: 'templates/tab-configuracoes.html',
+          controller: 'ConfigCtrl'
         }
       }
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/inicio');
 
 });
 

@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+.loading-container .loading h1{
+    color: rgb(250,100,100);
+    font-size: 100px;
+}
+
+.loading-container .loading{
+    
+    background:rgba(0,0,0,0.005);
+}

@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/mobile env/Mobile/WorkSpace/FortesTimeWizard/gulpfile.js",
+        "C:/mobile env/Mobile/WorkSpace/FortesTimeWizard/www/lib/ionic/js/ionic.min.js"
+    ]
+}
