@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starter.services'])
+angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'starter.services'])
 
 
 
@@ -55,20 +55,11 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       views: {
         'tab-registros': {
           templateUrl: 'templates/tab-registros.html',
-          controller: 'LancamentosCtrl'
+          controller: 'RegistroCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
+    
     .state('tab.configuracoes', {
       url: '/configuracoes',
       views: {

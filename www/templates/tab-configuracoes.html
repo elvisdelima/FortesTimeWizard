@@ -10,7 +10,7 @@
       </label>
         <span ng-if="!salvo">
           <button class="button button-full button-assertive" ng-click="SalvarPis()">
-                <i class="icon ion-checkmark"></i> Salvar
+                 Salvar
           </button>
         </span>
         <span ng-if="salvo">
@@ -18,6 +18,27 @@
                 <i class="icon ion-checkmark"></i> Salvo
           </button>
         </span>
+        <ul class="list">
+            <h1 class="title">Alertas</h1>
+          <li class="item item-toggle">
+             Som
+             <label class="toggle toggle-assertive">
+               <input type="checkbox">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>
+          <li class="item item-toggle">
+             Vibrar
+             <label class="toggle toggle-assertive">
+               <input type="checkbox">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>    
+        </ul>
     </div>
   </ion-content>
 </ion-view>
