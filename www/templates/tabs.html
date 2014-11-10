@@ -3,7 +3,7 @@
   Each tab's child <ion-nav-view> directive will have its own 
   navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-assertive">
+<ion-tabs class="tabs-icon-top tabs-background-assertive tabs-striped tabs-light">
 
 
   <!-- Home Tab -->
@@ -13,7 +13,7 @@
   </ion-tab>
 
 
-  <!-- Alarmes Tab -->
+  <!-- Registros Tab -->
   <ion-tab title="Registros" icon="icon ion-clock" href="#/tab/registros">
     <ion-nav-view name="tab-registros"></ion-nav-view>
   </ion-tab>
@@ -22,6 +22,11 @@
   <!-- Configurações Tab -->
   <ion-tab title="Configurações" icon="icon ion-gear-b" href="#/tab/configuracoes">
     <ion-nav-view name="tab-configuracoes"></ion-nav-view>
+  </ion-tab>
+    
+  <!-- Informações Tab -->
+  <ion-tab title="Info" icon="icon ion-information-circled" href="#/tab/info">
+    <ion-nav-view name="tab-info"></ion-nav-view>
   </ion-tab>
 
 

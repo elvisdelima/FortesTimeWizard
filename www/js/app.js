@@ -68,7 +68,25 @@ angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services']
           controller: 'ConfigCtrl'
         }
       }
-    });
+    })
+  .state('tab.info', {
+      url: '/info',
+      views: {
+        'tab-info': {
+          templateUrl: 'templates/tab-info.html',
+          controller: 'InfoCtrl'
+        }
+      }
+    })
+  .state('tab.turnoMaximo', {
+      url: "/turnoMaximo",
+      views: {
+        'tab-info': {
+          templateUrl: "templates/Info/turnoMaximoInfo.html"
+        }
+      }
+    })
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/inicio');

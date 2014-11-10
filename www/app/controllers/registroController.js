@@ -2,8 +2,8 @@
 angular.module('app.controllers')
 .controller('RegistroCtrl', function($http,$scope,$location,$ionicModal,$ionicLoading,$ionicPopup, RegistroService) {
 	
-    $scope.data={Filtro:""};
-    $scope.data={Dia: new Date().toLocaleDateString()};
+    $scope.data={Filtro:"",Dia: new Date().toLocaleDateString()};
+//    $scope.data={};
     
     var pis = localStorage.getItem("pis")
     $scope.$watch("data.Filtro",function(nValue,oValue){
@@ -38,11 +38,12 @@ angular.module('app.controllers')
             $ionicLoading.show({        
                  template: '<h1><i class="icon ion-loading-a"></i></h1>'        
             });
-            RegistroService.getRegistrosHoje(pis,dia).success(function(result){
-              var array = result.data;
+            RegistroService.getRegistrosFiltro(pis,dia).success(function(data){
+              var array = data;
               var result = array.map(function(item, rank){
                             return {sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
-                                      hora: item.DtRegistro.slice(11,16) };                          
+                                    data: moment(item.DtRegistro,"DD/MM/YYYY HH:mm:ss"),  
+                                    hora: moment(item.DtRegistro,"DD/MM/YYYY HH:mm:ss").format("HH:mm")};                          
                             });
               $scope.lancamentos = result;
               $ionicLoading.hide();
@@ -57,8 +58,8 @@ angular.module('app.controllers')
         $ionicLoading.show({        
          template: '<h1><i class="icon ion-loading-a"></i></h1> '        
         })        
-        RegistroService.getRegistrosHoje(pis).success(function(result){
-                    var array = result;
+        RegistroService.getRegistrosHoje(pis).success(function(data){
+                    var array = data;
                     var result = array.map(function(item, rank){
                         return {
                                 sentido: (rank % 2) == 0 ? "Entrada" : "Saída",

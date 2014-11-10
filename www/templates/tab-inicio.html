@@ -4,25 +4,25 @@
     </div>  
   <ion-content padding=true style="margin-top:50px;"> 
 		<div class="item item-divider">
-          Próxima Quebra de Regra
+          Horas Trabalhadas no Dia
         </div>
 		<ion-item>
-  			<h1>01:37</h1>				
+  			<h1>{{dadosInicio.totalTrabalhado}}</h1>				
         </ion-item>
-
         <div class="item item-divider">
-          Trabalhado no Turno
+          Horas de Intervalo no Dia
         </div>
 		<ion-item>
-  			<h1>05:23</h1>				
+  			<h1>{{dadosInicio.totalIntarvalos}}</h1>				
         </ion-item>
-
-		<div class="item item-divider">
-          Trabalhado no Dia
+        
+        <div class="item item-divider">
+          Horas Trabalhadas no Turno Atual 
         </div>
 		<ion-item>
-  			<h1>08:10</h1>				
-        </ion-item>      
+  			<h1>{{dadosInicio.horasDoTurno}}</h1>				
+        </ion-item>
+	
   </ion-content>
     
 </ion-view>
