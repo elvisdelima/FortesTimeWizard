@@ -1,7 +1,7 @@
 angular.module('app.controllers',[])
 .controller('InicioCtrl', function($scope,RegistroService) {
     var pis = localStorage.getItem("pis");
-    var registros = RegistroService.getRegistrosHoje(pis);
+    var registros = RegistroService.getRegistrosHojeFake(pis);
     
     var Turnos =[];
     var Intervalos=[];
