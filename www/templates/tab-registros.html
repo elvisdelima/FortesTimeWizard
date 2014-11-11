@@ -1,7 +1,12 @@
-<ion-view title="Registros">
-  <ion-content>
-	<div class="item item-divider">
-  	Hoje
+<ion-view hide-nav-bar=true >
+    
+    <div class="bar bar-header bar-assertive">
+        <h1 class="title">Registros</h1>    
+    </div>  
+    <ion-content padding=true style="margin-top:50px;"> 
+
+    <div class="item item-divider">
+  	<button  ng-click="openModal()" class="button  button-full button-icon icon icon-right ion-calendar"><h1>{{data.Dia}} </h1> </button>
 	</div>		
     <ion-list>
       <ion-item ng-repeat="l in lancamentos" type="item-text-wrap">
@@ -9,11 +14,45 @@
           <div class="col">
             {{l.sentido}}
           </div>
-          <div class="col col-20">
+          <div class="col col-20" >
             {{l.hora}}  
           </div>                
         </div>        
       </ion-item>
     </ion-list>
+      <button class="button button-full button-assertive" ng-click="BatidasDeHoje()">
+            Batidas De Hoje
+      </button>
   </ion-content>
 </ion-view>
+
+<script id="modalDate.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Filtrar Data</h1>
+      <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+    </ion-header-bar>
+    <ion-content  padding=true>
+      <label class="item item-input">
+          <span class="input-label">Dia</span>
+          <input type="date" ng-model="data.Filtro">
+      </label>
+      <button class="button button-full button-assertive" ng-click="Filtrar(data.Dia)">
+            <i class="icon ion-funnel"></i> Filtrar
+      </button>
+      
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="attention.html" type="text/ng-template">
+  <ion-view>
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Atenção</h1>
+      <div class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></div>
+    </ion-header-bar>
+    <ion-content  padding=true>
+      <p>{{msg}}</p>
+    </ion-content>
+  </ion-view>
+</script>

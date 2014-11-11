@@ -1,0 +1,44 @@
+<ion-view hide-nav-bar=true>
+    <div class="bar bar-header bar-assertive">
+      <h1 class="title">Configurações</h1>
+    </div>  
+  <ion-content padding=true style="margin-top:50px;">     
+    <div class="list pane">
+      <label class="item item-input padding">
+        <span class="input-label">PIS</span>
+        <input type="text" ng-model="data.pis">
+      </label>
+        <span ng-if="!salvo">
+          <button class="button button-full button-assertive" ng-click="SalvarPis()">
+                 Salvar
+          </button>
+        </span>
+        <span ng-if="salvo">
+          <button class="button button-full button-balanced" ng-click="SalvarPis(pis)">
+                <i class="icon ion-checkmark"></i> Salvo
+          </button>
+        </span>
+        <ul class="list">
+            <h1 class="title">Alertas</h1>
+          <li class="item item-toggle">
+             Som
+             <label class="toggle toggle-assertive">
+               <input type="checkbox">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>
+          <li class="item item-toggle">
+             Vibrar
+             <label class="toggle toggle-assertive">
+               <input type="checkbox">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>    
+        </ul>
+    </div>
+  </ion-content>
+</ion-view>

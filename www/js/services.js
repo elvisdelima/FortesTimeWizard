@@ -3,10 +3,57 @@ angular.module('starter.services', [])
 /**
  * um servico para  recuperar todas os Lancamentos de hoje.
  */
-.factory("Lancamentos", function ($resource) {
+.factory("LancamentosHoje", function ($resource,$q,$http) {
+    
+    var getRegistrosHoje = function(pis){
+        
+        
+        
+        var deferred = $q.defer();
+        
+        
+        deferred.resolve(
+        $resource(
+                "http://fortesponto.azurewebsites.net/api/Lancamentos/:pis/2014-11-05",
+                {pis: pis},
+                {
+                  'query': {
+                    method: 'GET', 
+                    isArray: true, 
+                    transformResponse: function(data, headers) {
+                      var array = JSON.parse(data);
+                      var result = array.map(function(item, rank){
+                        return {
+                          sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
+                          hora: item.DtRegistro.slice(11,16) 
+                        };
+                      });
+                     
+                      return result;
+                    }}           
+                }    
+                ));
+//        $http.jsonp("http://fortesponto.azurewebsites.net/api/Lancamentos/"+pis+"/2014-11-05", function(data){
+//                 var array = JSON.parse(data);
+//                      var result = array.map(function(item, rank){
+//                        return {
+//                          sentido: (rank % 2) == 0 ? "Entrada" : "Saída",
+//                          hora: item.DtRegistro.slice(11,16) 
+//                        };
+//        })
+        
+         
+    }
+    
+    return {getRegistrosHoje:getRegistrosHoje};
+})
+/**
+ * um servico para  recuperar todas os Lancamentos de uma data.
+ */
+.factory("LancamentosFiltro", function ($resource) {
   return $resource(
-    "http://fortesponto.azurewebsites.net/api/Lancamentos/:pis/2014-10-31",
-    {pis: "@pis"},
+    "http://fortesponto.azurewebsites.net/api/Lancamentos/:pis/:dia",
+    {pis: "@pis",dia:"@dia"},      
     {
       'query': {
         method: 'GET', 

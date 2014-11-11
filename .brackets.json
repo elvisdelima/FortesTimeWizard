@@ -1,0 +1,9 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/mobile env/Mobile/WorkSpace/FortesTimeWizard/gulpfile.js",
+        "C:/mobile env/Mobile/WorkSpace/FortesTimeWizard/www/lib/ionic/js/ionic.min.js",
+        "C:/Users/Dev/Documents/GitHub/FortesTimeWizard/www/app/controllers/lancamentosController.js",
+        "C:/Users/Dev/Documents/GitHub/FortesTimeWizard/www/js/app.js",
+        "C:/Users/Dev/Documents/GitHub/FortesTimeWizard/www/lib/ionic/js/angular-ui/angular-ui-router.min.js"
+    ]
+}

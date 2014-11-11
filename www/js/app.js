@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starter.services'])
+angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services'])
+
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,12 +40,12 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
 
     // Each tab has its own nav history stack:
 
-    .state('tab.dash', {
-      url: '/dash',
+    .state('tab.inicio', {
+      url: '/inicio',
       views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+        'tab-inicio': {
+          templateUrl: 'templates/tab-inicio.html',
+          controller: 'InicioCtrl'
         }
       }
     })
@@ -53,32 +55,41 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       views: {
         'tab-registros': {
           templateUrl: 'templates/tab-registros.html',
-          controller: 'LancamentosCtrl'
+          controller: 'RegistroCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    
+    .state('tab.configuracoes', {
+      url: '/configuracoes',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-configuracoes': {
+          templateUrl: 'templates/tab-configuracoes.html',
+          controller: 'ConfigCtrl'
         }
       }
     })
-
-    .state('tab.account', {
-      url: '/account',
+  .state('tab.info', {
+      url: '/info',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-info': {
+          templateUrl: 'templates/tab-info.html',
+          controller: 'InfoCtrl'
         }
       }
-    });
+    })
+  .state('tab.turnoMaximo', {
+      url: "/turnoMaximo",
+      views: {
+        'tab-info': {
+          templateUrl: "templates/Info/turnoMaximoInfo.html"
+        }
+      }
+    })
+  ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/inicio');
 
 });
 
