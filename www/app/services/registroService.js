@@ -30,9 +30,7 @@ angular.module('app.services', [])
                            {sentido:"Saida",
                             data: moment("17:00",["HH:mm"]),
                             hora:  moment("17:00",["HH:mm"]).format("HH:mm")},
-                           {sentido:"Entrada",
-                            data: moment("19:00",["HH:mm"]),
-                            hora:  moment("19:00",["HH:mm"]).format("HH:mm")}
+                          
             ];
             return retorno;
         }

@@ -1,6 +1,6 @@
 //    020727948177
 angular.module('app.controllers')
-.controller('RegistroCtrl', function($http,$scope,$location,$ionicModal,$ionicLoading,$ionicPopup, RegistroService) {
+.controller('RegistroCtrl', function($scope,$location,$ionicModal,$ionicLoading,$ionicPopup, RegistroService,NotificaService) {
 	
     $scope.data={Filtro:"",Dia: new Date().toLocaleDateString()};
 //    $scope.data={};
@@ -70,6 +70,7 @@ angular.module('app.controllers')
                     $scope.data={Dia: new Date().toLocaleDateString()};
                     $scope.lancamentos = result;
                     $ionicLoading.hide();
+                    NotificaService.add("1112","BAtidas de hoje solicitadas.","Ação");
             
                 });
     }

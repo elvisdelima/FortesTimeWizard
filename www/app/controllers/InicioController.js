@@ -1,5 +1,18 @@
-angular.module('app.controllers',[])
-.controller('InicioCtrl', function($scope,RegistroService) {
+angular.module('app.controllers',["ngCordova"])
+.controller('InicioCtrl', function($scope,$interval,RegistroService) {
+    $scope.now = moment();
+    
+    $interval(function(){
+        $scope.now = moment();
+    },1000)
+    
+    $scope.$watch("now",function(nValue,oValue){
+        if($scope.dadosInicio.horasDoTurno){
+            $scope.dadosInicio.horasDoTurno.add(1,"second");
+            $scope.dadosInicio.totalTrabalhado.add(1,"second");
+        }
+    });
+    
     var pis = localStorage.getItem("pis");
     var registros = RegistroService.getRegistrosHojeFake(pis);
     
@@ -38,12 +51,13 @@ angular.module('app.controllers',[])
             }
         });
     }
-    var totalTrabalhando = "00:00"
+    
+    var totalTrabalhando;
     if(entradaEmAberto){
         var now = moment();
         var difNow = now.diff(entradaEmAberto.data);
         var trabalhando = moment.utc(difNow);
-        totalTrabalhando = trabalhando.format("HH:mm");
+        totalTrabalhando = trabalhando;
         
     }
     var totalTrabalhado=0;
@@ -54,8 +68,8 @@ angular.module('app.controllers',[])
     Intervalos.forEach(function(i){
         totalIntervalos+=i.dif;
     });
-    var momentTrabalhadas = totalTrabalhado > 0? moment.utc(totalTrabalhado).format("HH:mm") : totalTrabalhando;
-    var momentIntervalos = totalIntervalos > 0? moment.utc(totalIntervalos).format("HH:mm") : "00:00";
+    var momentTrabalhadas = totalTrabalhado > 0? moment.utc(totalTrabalhado): totalTrabalhando;
+    var momentIntervalos = totalIntervalos > 0? moment.utc(totalIntervalos):{};
     
     $scope.dadosInicio ={totalTrabalhado:momentTrabalhadas,
                          totalIntarvalos:momentIntervalos,
