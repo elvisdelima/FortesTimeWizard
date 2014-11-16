@@ -15,6 +15,10 @@ angular.module('app.services', [])
             var url="http://fortesponto.azurewebsites.net/api/Lancamentos/"+pis+"/"+date;
                 return $http.get(url);                    
         },
+        getProximaQuebra: function(pis){
+            var url="http://fortesponto.azurewebsites.net/api/Regras/"+pis+"/ProximaQuebra";
+                return $http.get(url);                    
+        },
         getRegistrosHojeFake:function(){
             
             

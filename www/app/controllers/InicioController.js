@@ -70,8 +70,16 @@ angular.module('app.controllers',["ngCordova"])
     });
     var momentTrabalhadas = totalTrabalhado > 0? moment.utc(totalTrabalhado): totalTrabalhando;
     var momentIntervalos = totalIntervalos > 0? moment.utc(totalIntervalos):{};
+    var proximaQuebra;
+    
+    RegistroService.getProximaQuebra(pis).success(function(data){
+        proximaQuebra= {Hora : moment(data.Hora,["YYYY-MM-DD HH:mm:ss"]),Mensagem: data.Mensagem};
+    });
     
     $scope.dadosInicio ={totalTrabalhado:momentTrabalhadas,
                          totalIntarvalos:momentIntervalos,
-                         horasDoTurno:totalTrabalhando};    
+                         horasDoTurno:totalTrabalhando,
+                         proximaQuebra:proximaQuebra};
+    
+    
 })

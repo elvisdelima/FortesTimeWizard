@@ -70,10 +70,11 @@ angular.module('app.controllers')
                     $scope.data={Dia: new Date().toLocaleDateString()};
                     $scope.lancamentos = result;
                     $ionicLoading.hide();
-                    NotificaService.add("1112","BAtidas de hoje solicitadas.","Ação");
+                    NotificaService.addNotification(11,"BAtidas de hoje solicitadas.","Ação");
             
                 });
     }
+    
     
     
      $ionicModal.fromTemplateUrl('modalDate.html', {
