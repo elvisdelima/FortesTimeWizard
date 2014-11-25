@@ -5,20 +5,19 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services','ngCordova'])
+var app = angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services','ngCordova'])
 
 
 
 .run(function($ionicPlatform,$cordovaVibration,$cordovaDialogs) {
     $ionicPlatform.ready(function() {
         
-    
+    navigator.splashscreen.hide();
+    $cordovaVibration.vibrate(1000);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-        var ALERT_VIBRATION ='ALERT_VIBRATION';
-        var ALERT_VIBRATION ='ALERT_SOUND';
-        $cordovaVibration.vibrate(1000);
+    
+    if(window.cordova && window.cordova.plugins.Keyboard) {        
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
@@ -84,10 +83,34 @@ angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services',
       }
     })
   .state('tab.turnoMaximo', {
-      url: "/turnoMaximo",
+      url: "/TurnoMaximo",
       views: {
         'tab-info': {
           templateUrl: "templates/Info/turnoMaximoInfo.html"
+        }
+      }
+    })
+  .state('tab.interjornada', {
+      url: "/Interjornada",
+      views: {
+        'tab-info': {
+          templateUrl: "templates/Info/Interjornada.html"
+        }
+      }
+    })
+  .state('tab.horasTrabalhadasPorDia', {
+      url: "/HorasTrabalhadasPorDia",
+      views: {
+        'tab-info': {
+          templateUrl: "templates/Info/HorasTrabalhadasPorDia.html"
+        }
+      }
+    })
+  .state('tab.esquecimentoBatida', {
+      url: "/EsquecimentoBatida",
+      views: {
+        'tab-info': {
+          templateUrl: "templates/Info/EsquecimentoBatida.html"
         }
       }
     })
@@ -98,3 +121,8 @@ angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.services',
 
 });
 
+app.onReminderAdd = function(id, state, json) {
+  $timeout(function() {
+    $rootScope.$broadcast('onReminderAdded', id, state, json);
+  }, 100);
+}

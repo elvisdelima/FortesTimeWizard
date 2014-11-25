@@ -14,15 +14,21 @@ angular.module('app.services')
 //    };
     return{
         addNotification: function(id,msg,title){
-            return $cordovaLocalNotification.add({
-                    id:id,
-                    date:moment().add(1,"minute").toDate(),
-                    message:msg,
-                    title:title
-                }).then(function(){
-                    $cordovaVibration.vibrate(100);
-                });
-        }
+            window.plugin.notification.local.add({
+              id: id,
+              title:   title,
+              message: msg
+            });
+        },
+        notify: function(){
+                var vibrate = localStorage.getItem("vibra")=="true";
+                var sound = localStorage.getItem("sound")=="true";
+
+                if(sound)
+                    $cordovaDialogs.beep(1);
+                if(vibrate)
+                    $cordovaVibration.vibrate(2000);
+            }
     };
 
 });

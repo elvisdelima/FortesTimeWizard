@@ -69,13 +69,13 @@ angular.module('app.controllers')
                     $scope.lancamentos = [];
                     $scope.data={Dia: new Date().toLocaleDateString()};
                     $scope.lancamentos = result;
-                    $ionicLoading.hide();
-                    NotificaService.addNotification(11,"BAtidas de hoje solicitadas.","Ação");
-            
-                });
+                    $ionicLoading.hide();                  
+                }).error(function(err){NotificaService.addNotification(11,"Batidas de hoje solicitadas.","Ação");});
     }
     
-    
+    $scope.TesteNotifica = function(){
+            NotificaService.addNotification(11,"Batidas de hoje solicitadas.","Teste");
+    }
     
      $ionicModal.fromTemplateUrl('modalDate.html', {
         scope: $scope,

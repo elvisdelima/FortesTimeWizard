@@ -19,8 +19,13 @@ angular.module('app.services', [])
             var url="http://fortesponto.azurewebsites.net/api/Regras/"+pis+"/ProximaQuebra";
                 return $http.get(url);                    
         },
-        getRegistrosHojeFake:function(){
+        getProximaQuebraFake: function(){
+            return {Hora : moment().add(1,"minute"),Mensagem: "Teste"};
             
+        },
+     
+        
+        getRegistrosHojeFake:function(){            
             
             var retorno = [{sentido:"Entrada",
                             data: moment("08:00",["HH:mm"]),
@@ -31,10 +36,10 @@ angular.module('app.services', [])
                            {sentido:"Entrada",
                             data: moment("13:00",["HH:mm"]),
                             hora:  moment("13:00",["HH:mm"]).format("HH:mm")},
-                           {sentido:"Saida",
-                            data: moment("17:00",["HH:mm"]),
-                            hora:  moment("17:00",["HH:mm"]).format("HH:mm")},
-                          
+//                           {sentido:"Saida",
+//                            data: moment("17:00",["HH:mm"]),
+//                            hora:  moment("17:00",["HH:mm"]).format("HH:mm")},
+//                          
             ];
             return retorno;
         }

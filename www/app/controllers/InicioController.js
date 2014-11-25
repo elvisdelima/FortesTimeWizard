@@ -1,19 +1,28 @@
 angular.module('app.controllers',["ngCordova"])
-.controller('InicioCtrl', function($scope,$interval,RegistroService) {
+.controller('InicioCtrl', function($scope,$interval,RegistroService,NotificaService) {
     $scope.now = moment();
     
     $interval(function(){
         $scope.now = moment();
     },1000)
     
+        
     $scope.$watch("now",function(nValue,oValue){
         if($scope.dadosInicio.horasDoTurno){
             $scope.dadosInicio.horasDoTurno.add(1,"second");
             $scope.dadosInicio.totalTrabalhado.add(1,"second");
-        }
+        }   
+        if($scope.dadosInicio.proximaQuebra.Hora.second()>=0)
+            $scope.dadosInicio.proximaQuebra.Hora.add(-1,"second");
+            if($scope.dadosInicio.proximaQuebra.Hora.hour()===0 && $scope.dadosInicio.proximaQuebra.Hora.minute()===0 && $scope.dadosInicio.proximaQuebra.Hora.second()===0){
+                        $scope.dadosInicio.proximaQuebra.Hora=moment().add(1,"minute");
+                        NotificaService.notify();
+            }                
+                
     });
     
     var pis = localStorage.getItem("pis");
+    
     var registros = RegistroService.getRegistrosHojeFake(pis);
     
     var Turnos =[];
@@ -75,11 +84,13 @@ angular.module('app.controllers',["ngCordova"])
     RegistroService.getProximaQuebra(pis).success(function(data){
         proximaQuebra= {Hora : moment(data.Hora,["YYYY-MM-DD HH:mm:ss"]),Mensagem: data.Mensagem};
     });
+    proximaQuebra = RegistroService.getProximaQuebraFake();
     
+    var teste = proximaQuebra.Hora.diff(now);
+    proximaQuebra.Hora = moment.utc(teste);
     $scope.dadosInicio ={totalTrabalhado:momentTrabalhadas,
                          totalIntarvalos:momentIntervalos,
                          horasDoTurno:totalTrabalhando,
                          proximaQuebra:proximaQuebra};
-    
-    
+  
 })
