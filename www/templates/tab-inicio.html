@@ -7,13 +7,13 @@
           Horas Trabalhadas no Dia
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.totalTrabalhado.format("HH:mm")||"00:00"}}</h1>				
+  			<h1>{{dadosInicio.totalTrabalhado.format("HH:mm:ss")||"00:00"}}</h1>				
         </ion-item>
         <div class="item item-divider">
           Horas de Intervalo no Dia
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.totalIntarvalos.format("HH:mm")||"00:00"}}</h1>				
+  			<h1>{{dadosInicio.totalIntarvalos.format("HH:mm:ss")||"00:00"}}</h1>				
         </ion-item>
         
 <!--
@@ -28,7 +28,7 @@
           Quebra de Regra :  {{dadosInicio.proximaQuebra.Mensagem}}
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.proximaQuebra.Hora.format("HH:mm")||"00:00"}}</h1>				
+  			<h1>{{dadosInicio.proximaQuebra.Hora.format("HH:mm:ss")||"00:00"}}</h1>				
         </ion-item>
           
       </ion-item>
