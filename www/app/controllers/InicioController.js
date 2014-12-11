@@ -15,7 +15,7 @@ angular.module('app.controllers',["ngCordova"])
         if($scope.dadosInicio.proximaQuebra.Hora.second()>=0)
             $scope.dadosInicio.proximaQuebra.Hora.add(-1,"second");
             if($scope.dadosInicio.proximaQuebra.Hora.hour()===0 && $scope.dadosInicio.proximaQuebra.Hora.minute()===0 && $scope.dadosInicio.proximaQuebra.Hora.second()===0){
-                        $scope.dadosInicio.proximaQuebra.Hora=moment().add(1,"minute");
+                        $scope.dadosInicio.proximaQuebra = RegistroService.getProximaQuebraFake();
                         NotificaService.notify();
             }                
                 
@@ -85,12 +85,12 @@ angular.module('app.controllers',["ngCordova"])
         proximaQuebra= {Hora : moment(data.Hora,["YYYY-MM-DD HH:mm:ss"]),Mensagem: data.Mensagem};
     });
     proximaQuebra = RegistroService.getProximaQuebraFake();
-    
+    momentTrabalhadas = momentTrabalhadas.add(totalTrabalhando.minute(),"minute").add(totalTrabalhando.hour(),"hour")
     var teste = proximaQuebra.Hora.diff(now);
     proximaQuebra.Hora = moment.utc(teste);
     $scope.dadosInicio ={totalTrabalhado:momentTrabalhadas,
                          totalIntarvalos:momentIntervalos,
-                         horasDoTurno:totalTrabalhando,
+//                         horasDoTurno:totalTrabalhando,
                          proximaQuebra:proximaQuebra};
   
 })

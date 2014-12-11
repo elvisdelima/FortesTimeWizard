@@ -13,7 +13,6 @@ var app = angular.module('app', ['ionic', 'ngResource', 'app.controllers', 'app.
     $ionicPlatform.ready(function() {
         
     navigator.splashscreen.hide();
-    $cordovaVibration.vibrate(1000);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     
