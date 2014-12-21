@@ -8,10 +8,9 @@ angular.module('app.controllers',["ngCordova"])
     
         
     $scope.$watch("now",function(nValue,oValue){
-        if($scope.dadosInicio.horasDoTurno){
-            $scope.dadosInicio.horasDoTurno.add(1,"second");
-            $scope.dadosInicio.totalTrabalhado.add(1,"second");
-        }   
+        
+        $scope.dadosInicio.totalTrabalhado.add(1,"second");
+           
         if($scope.dadosInicio.proximaQuebra.Hora.second()>=0)
             $scope.dadosInicio.proximaQuebra.Hora.add(-1,"second");
             if($scope.dadosInicio.proximaQuebra.Hora.hour()===0 && $scope.dadosInicio.proximaQuebra.Hora.minute()===0 && $scope.dadosInicio.proximaQuebra.Hora.second()===0){
