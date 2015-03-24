@@ -1,27 +1,37 @@
 <ion-view hide-nav-bar=true>
     <div class="bar bar-header bar-assertive">
-      <h1 class="title">Fortes TimeWizard</h1>
+      <h1 class="title">Fortes Ponto</h1>
     </div>  
   <ion-content padding=true style="margin-top:50px;"> 
 		<div class="item item-divider">
           Horas Trabalhadas no Dia
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.totalTrabalhado}}</h1>				
+  			<h1>{{dadosInicio.totalTrabalhado.format("HH:mm:ss")||"00:00:00"}}</h1>				
         </ion-item>
         <div class="item item-divider">
           Horas de Intervalo no Dia
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.totalIntarvalos}}</h1>				
+  			<h1>{{dadosInicio.totalIntarvalos.format("HH:mm:ss")||"00:00:00"}}</h1>				
         </ion-item>
         
+<!--
         <div class="item item-divider">
           Horas Trabalhadas no Turno Atual 
         </div>
 		<ion-item>
-  			<h1>{{dadosInicio.horasDoTurno}}</h1>				
+  			<h1>{{dadosInicio.horasDoTurno.format("HH:mm")||"00:00"}}</h1>				
         </ion-item>
+-->
+      <div class="item item-divider">
+          Quebra de Regra :  {{dadosInicio.proximaQuebra.Mensagem}}
+        </div>
+		<ion-item>
+  			<h1>{{dadosInicio.proximaQuebra.Hora.format("HH:mm:ss")||"00:00:00"}}</h1>				
+        </ion-item>
+          
+      </ion-item>
 	
   </ion-content>
     
